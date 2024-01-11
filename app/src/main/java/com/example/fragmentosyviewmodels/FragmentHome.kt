@@ -25,8 +25,9 @@ class FragmentHome : Fragment() {
         v= inflater.inflate(R.layout.fragment_home, container, false)
         v.findViewById<ImageView>(R.id.imageView).setOnClickListener {
             val fm: FragmentManager = parentFragmentManager
+
             fm.commit {
-                replace(R.id.fragmentContainerView, ListFragment.newInstance())
+                replace(R.id.fragmentContainerView, FragmentList.newInstance())
                 addToBackStack("replacement")
             }
             true
