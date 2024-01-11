@@ -20,19 +20,13 @@ class FragmentList : Fragment() {
     private lateinit var v: View
     private val teamFort: TeamFort by activityViewModels()
 
-    class MainActivity : AppCompatActivity() {
-
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    class MainActivity : AppCompatActivity()
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_list, container, false)
         val recyclerView: RecyclerView = v.findViewById<RecyclerView>(R.id.recyclerview)
         var adaptador = TeamFortRecyclerViewAdapter(this.teamFort.getCaractera)
@@ -55,7 +49,6 @@ class FragmentList : Fragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() =
             FragmentList().apply {

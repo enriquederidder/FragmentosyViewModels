@@ -9,20 +9,17 @@ import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.ListFragment
 import androidx.fragment.app.commit
+
 class FragmentHome : Fragment() {
 
-    private lateinit var v:View
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var v: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        v= inflater.inflate(R.layout.fragment_home, container, false)
+        v = inflater.inflate(R.layout.fragment_home, container, false)
         v.findViewById<ImageView>(R.id.imageView).setOnClickListener {
             val fm: FragmentManager = parentFragmentManager
 

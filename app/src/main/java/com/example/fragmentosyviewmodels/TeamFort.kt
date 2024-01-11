@@ -3,10 +3,10 @@ package com.example.fragmentosyviewmodels
 import androidx.lifecycle.ViewModel
 import com.example.fragmentosyviewmodels.models.Caracter
 
-class TeamFort: ViewModel() {
+class TeamFort : ViewModel() {
 
     private var caracters: MutableList<Caracter> = mutableListOf()
-    private var selected:Caracter? = null
+    private var selected: Caracter? = null
 
     init {
         this.caracters.add(
@@ -27,9 +27,12 @@ class TeamFort: ViewModel() {
             )
         )
     }
-    val getCaractera:List<Caracter>
+
+    val getCaractera: List<Caracter>
         get() = caracters.toList()
-    var getAndSetselected:Caracter?
-        get()=selected
-        set(item){ selected=item}
-    }
+    var getAndSetselected: Caracter?
+        get() = selected
+        set(item) {
+            selected = item
+        }
+}
