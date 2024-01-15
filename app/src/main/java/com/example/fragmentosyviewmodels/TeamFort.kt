@@ -6,7 +6,7 @@ import com.example.fragmentosyviewmodels.models.Caracter
 class TeamFort : ViewModel() {
 
     private var caracters: MutableList<Caracter> = mutableListOf()
-    private var selected: Caracter? = null
+    var selected: Caracter? = null
 
     init {
         this.caracters.add(

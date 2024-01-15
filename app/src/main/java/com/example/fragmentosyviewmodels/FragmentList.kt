@@ -36,7 +36,7 @@ class FragmentList : Fragment() {
                 this.teamFort.getAndSetselected = caracter
                 val fm: FragmentManager = parentFragmentManager
                 fm.commit {
-                    //replace(R.id.fragmentContainerView, DetailFragment.newInstance())
+                    replace(R.id.fragmentContainerView, FragmentDetail.newInstance())
                     addToBackStack("replacement")
                 }
 
