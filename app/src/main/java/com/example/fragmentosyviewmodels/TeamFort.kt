@@ -23,7 +23,23 @@ class TeamFort : ViewModel() {
                 "Medic",
                 "Support",
                 "Support class that provides health to other players",
-                150
+                200
+            )
+        )
+        this.caracters.add(
+            Caracter(
+                "Sniper",
+                "Support",
+                "Kills other players, from long range",
+                200
+            )
+        )
+        this.caracters.add(
+            Caracter(
+                "Heavy",
+                "Offense",
+                "Has alot of healt, but is slow",
+                350
             )
         )
     }

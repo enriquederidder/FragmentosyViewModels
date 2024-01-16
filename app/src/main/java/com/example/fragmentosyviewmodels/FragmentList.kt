@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.ListFragment
@@ -27,6 +28,15 @@ class FragmentList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        v.findViewById<ImageView>(R.id.edit).setOnClickListener {
+            val fm: FragmentManager = parentFragmentManager
+
+            fm.commit {
+                replace(R.id.fragmentContainerView, FragmentEdit.newInstance())
+                addToBackStack("replacement")
+            }
+            true
+        }
         v = inflater.inflate(R.layout.fragment_list, container, false)
         val recyclerView: RecyclerView = v.findViewById<RecyclerView>(R.id.recyclerview)
         var adaptador = TeamFortRecyclerViewAdapter(this.teamFort.getCaractera)
