@@ -5,33 +5,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentEdit.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentEdit : Fragment() {
-
+    private lateinit var v: View
+    private val teamFort: TeamFort by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit, container, false)
-    }
-    companion object {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        v = inflater.inflate(R.layout.fragment_edit, container, false)
+        this.teamFort.selected?.let {
+            v.findViewById<TextView>(R.id.editTextNombre).setText(it.name)
+            v.findViewById<TextView>(R.id.editTextClas).setText(it.clas.toString())
+            v.findViewById<TextView>(R.id.editTextDescription).setText(it.description.toString())
+            v.findViewById<TextView>(R.id.editTextHealth).setText(it.health.toString())
+        }
 
-        // TODO: Rename and change types and number of parameters
+        return v //inflater.inflate(R.layout.fragment_edit, container, false)
+    }
+
+    companion object {
         @JvmStatic
         fun newInstance() =
             FragmentEdit().apply {

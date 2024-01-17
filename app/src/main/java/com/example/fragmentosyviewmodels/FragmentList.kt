@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -21,38 +22,26 @@ class FragmentList : Fragment() {
     private lateinit var v: View
     private val teamFort: TeamFort by activityViewModels()
 
-    class MainActivity : AppCompatActivity()
-
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        v.findViewById<ImageView>(R.id.edit).setOnClickListener {
-            val fm: FragmentManager = parentFragmentManager
+        // Inflate the layout first
+        v = inflater.inflate(R.layout.fragment_list, container, false)
 
+        val recyclerView: RecyclerView = v.findViewById(R.id.recyclerview)
+        val adaptador = TeamFortRecyclerViewAdapter(this.teamFort.getCaractera)
+        adaptador.click = { position, caracter ->
+            this.teamFort.getAndSetselected = caracter
+            val fm: FragmentManager = parentFragmentManager
             fm.commit {
-                replace(R.id.fragmentContainerView, FragmentEdit.newInstance())
+                replace(R.id.fragmentContainerView, FragmentDetail.newInstance())
                 addToBackStack("replacement")
             }
-            true
         }
-        v = inflater.inflate(R.layout.fragment_list, container, false)
-        val recyclerView: RecyclerView = v.findViewById<RecyclerView>(R.id.recyclerview)
-        var adaptador = TeamFortRecyclerViewAdapter(this.teamFort.getCaractera)
-        adaptador.click = { position, caracter ->
-            run {
-                //se selecciona el dragón
-                this.teamFort.getAndSetselected = caracter
-                val fm: FragmentManager = parentFragmentManager
-                fm.commit {
-                    replace(R.id.fragmentContainerView, FragmentDetail.newInstance())
-                    addToBackStack("replacement")
-                }
 
-            }
-        }
-        val layoutManager = LinearLayoutManager(this.context)
+        val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adaptador
         return v

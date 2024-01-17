@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
@@ -29,6 +30,15 @@ class FragmentDetail : Fragment() {
             v.findViewById<TextView>(R.id.clas).setText(it.clas.toString())
             v.findViewById<TextView>(R.id.description).setText(it.description.toString())
             v.findViewById<TextView>(R.id.health).setText(it.health.toString())
+        }
+        v.findViewById<Button>(R.id.edit).setOnClickListener {
+            val fm: FragmentManager = parentFragmentManager
+
+            fm.commit {
+                replace(R.id.fragmentContainerView, FragmentEdit.newInstance())
+                addToBackStack("replacement")
+            }
+            true
         }
 
         // Inflate the layout for this fragment
