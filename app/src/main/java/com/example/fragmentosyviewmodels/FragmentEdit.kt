@@ -1,21 +1,18 @@
 package com.example.fragmentosyviewmodels
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
+import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.fragmentosyviewmodels.models.Caracter
 
 class FragmentEdit : Fragment() {
     private lateinit var v: View
     private val teamFort: TeamFort by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,15 +20,45 @@ class FragmentEdit : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_edit, container, false)
         this.teamFort.selected?.let {
-            v.findViewById<TextView>(R.id.editTextNombre).setText(it.name)
-            v.findViewById<TextView>(R.id.editTextClas).setText(it.clas.toString())
-            v.findViewById<TextView>(R.id.editTextDescription).setText(it.description.toString())
-            v.findViewById<TextView>(R.id.editTextHealth).setText(it.health.toString())
+            v.findViewById<EditText>(R.id.editTextNombre).setText(it.name)
+            v.findViewById<EditText>(R.id.editTextClas).setText(it.clas)
+            v.findViewById<EditText>(R.id.editTextDescription).setText(it.description)
+            v.findViewById<EditText>(R.id.editTextHealth).setText(it.health.toString())
+        }
+
+        v.findViewById<Button>(R.id.buttonSave).setOnClickListener {
+            saveChanges()
         }
 
         return v //inflater.inflate(R.layout.fragment_edit, container, false)
     }
+    private fun saveChanges() {
+        // Actualiza el caracter eleigido con el conetenido editado
 
+        teamFort.selected?.let { originalCharacter ->
+            try {
+                val editedCharacter = originalCharacter.copy(
+                    name = v.findViewById<EditText>(R.id.editTextNombre).text.toString(),
+                    clas = v.findViewById<EditText>(R.id.editTextClas).text.toString(),
+                    description = v.findViewById<EditText>(R.id.editTextDescription).text.toString(),
+                    health = v.findViewById<EditText>(R.id.editTextHealth).text.toString().toInt()
+                )
+
+                // Actuliza en el ViewModel
+                val index = teamFort.caracters.indexOf(originalCharacter)
+                if (index != -1) {
+                    teamFort.caracters[index] = editedCharacter
+                }
+            } catch (e: NumberFormatException) {
+                // TODO
+            }
+        }
+
+        // Navigate back to the detail fragment
+        parentFragmentManager.popBackStack()
+        parentFragmentManager.popBackStack()
+
+    }
     companion object {
         @JvmStatic
         fun newInstance() =

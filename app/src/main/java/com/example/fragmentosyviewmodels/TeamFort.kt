@@ -5,7 +5,7 @@ import com.example.fragmentosyviewmodels.models.Caracter
 
 class TeamFort : ViewModel() {
 
-    private var caracters: MutableList<Caracter> = mutableListOf()
+    var caracters: MutableList<Caracter> = mutableListOf()
     var selected: Caracter? = null
 
     init {
@@ -44,8 +44,9 @@ class TeamFort : ViewModel() {
         )
     }
 
-    val getCaractera: List<Caracter>
-        get() = caracters.toList()
+    val getCaractera: MutableList<Caracter>
+        get() = caracters
+
     var getAndSetselected: Caracter?
         get() = selected
         set(item) {

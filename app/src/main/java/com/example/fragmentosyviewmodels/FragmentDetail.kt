@@ -6,19 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.Observer
+import com.example.fragmentosyviewmodels.models.Caracter
 
 class FragmentDetail : Fragment() {
     private lateinit var v: View
     private val teamFort: TeamFort by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,10 +23,10 @@ class FragmentDetail : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_detail, container, false)
         this.teamFort.selected?.let {
-            v.findViewById<TextView>(R.id.name).setText(it.name)
-            v.findViewById<TextView>(R.id.clas).setText(it.clas.toString())
-            v.findViewById<TextView>(R.id.description).setText(it.description.toString())
-            v.findViewById<TextView>(R.id.health).setText(it.health.toString())
+            v.findViewById<TextView>(R.id.name).text = it.name
+            v.findViewById<TextView>(R.id.clas).text = it.clas.toString()
+            v.findViewById<TextView>(R.id.description).text = it.description.toString()
+            v.findViewById<TextView>(R.id.health).text = it.health.toString()
         }
         v.findViewById<Button>(R.id.edit).setOnClickListener {
             val fm: FragmentManager = parentFragmentManager
@@ -46,7 +43,6 @@ class FragmentDetail : Fragment() {
     }
 
     companion object {
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
             FragmentDetail().apply {
