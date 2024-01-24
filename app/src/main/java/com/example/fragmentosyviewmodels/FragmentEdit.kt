@@ -29,6 +29,9 @@ class FragmentEdit : Fragment() {
         v.findViewById<Button>(R.id.buttonSave).setOnClickListener {
             saveChanges()
         }
+        v.findViewById<Button>(R.id.buttonNewClass).setOnClickListener {
+            newCaracter()
+        }
 
         return v //inflater.inflate(R.layout.fragment_edit, container, false)
     }
@@ -56,6 +59,27 @@ class FragmentEdit : Fragment() {
 
         // Navigate back to the detail fragment
         parentFragmentManager.popBackStack()
+        parentFragmentManager.popBackStack()
+
+    }
+    private fun newCaracter() {
+        // Actualiza el caracter eleigido con el conetenido editado
+
+
+        val name = v.findViewById<EditText>(R.id.editTextNombre).text
+        val clas = v.findViewById<EditText>(R.id.editTextClas).text
+        val description = v.findViewById<EditText>(R.id.editTextDescription).text
+        val health = v.findViewById<EditText>(R.id.editTextHealth).id
+
+        teamFort.caracters.add(
+            Caracter(
+                name.toString(),
+                clas.toString(),
+                description.toString(),
+                health
+            )
+        )
+
         parentFragmentManager.popBackStack()
 
     }

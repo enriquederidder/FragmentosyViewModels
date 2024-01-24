@@ -40,6 +40,14 @@ class FragmentList : Fragment() {
                 addToBackStack("replacement")
             }
         }
+        v.findViewById<Button>(R.id.addNewClas).setOnClickListener {
+            val fm: FragmentManager = parentFragmentManager
+
+            fm.commit {
+                replace(R.id.fragmentContainerView, FragmentEdit.newInstance())
+                addToBackStack("replacement")
+            }
+        }
 
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager

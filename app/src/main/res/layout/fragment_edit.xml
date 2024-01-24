@@ -20,25 +20,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/editTextClas"
-                android:layout_width="match_parent"
-                android:layout_height="61dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Name" />
-
-            <EditText
-                android:id="@+id/editTextHealth"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Name" />
-
-            <EditText
                 android:id="@+id/editTextNombre"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name" />
+
+            <EditText
+                android:id="@+id/editTextClas"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="Name" />
@@ -51,11 +43,25 @@
                 android:inputType="text"
                 android:text="Name" />
 
+            <EditText
+                android:id="@+id/editTextHealth"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name" />
+
             <Button
                 android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save" />
+
+            <Button
+                android:id="@+id/buttonNewClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
