@@ -63,20 +63,18 @@ class FragmentEdit : Fragment() {
 
     }
     private fun newCaracter() {
-        // Actualiza el caracter eleigido con el conetenido editado
-
 
         val name = v.findViewById<EditText>(R.id.editTextNombre).text
         val clas = v.findViewById<EditText>(R.id.editTextClas).text
         val description = v.findViewById<EditText>(R.id.editTextDescription).text
-        val health = v.findViewById<EditText>(R.id.editTextHealth).id
+        val health = v.findViewById<EditText>(R.id.editTextHealth)
 
         teamFort.caracters.add(
             Caracter(
                 name.toString(),
                 clas.toString(),
                 description.toString(),
-                health
+                health.text.toString().toInt()
             )
         )
 
