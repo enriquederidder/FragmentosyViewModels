@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.ListFragment
 import androidx.fragment.app.commit
 
 class FragmentHome : Fragment() {
@@ -34,7 +33,6 @@ class FragmentHome : Fragment() {
 
     companion object {
 
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
             FragmentHome().apply {

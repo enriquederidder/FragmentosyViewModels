@@ -14,13 +14,15 @@
             android:id="@+id/addNewClas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:onClick="anadirNuevo"
             android:text="Añadir" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:padding="20dp" />
 
     </LinearLayout>
 </FrameLayout>

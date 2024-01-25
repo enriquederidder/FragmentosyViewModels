@@ -10,8 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.lifecycle.Observer
-import com.example.fragmentosyviewmodels.models.Caracter
 
 class FragmentDetail : Fragment() {
     private lateinit var v: View
@@ -22,6 +20,7 @@ class FragmentDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_detail, container, false)
+        this.update()
         this.teamFort.selected?.let {
             v.findViewById<TextView>(R.id.name).text = it.name
             v.findViewById<TextView>(R.id.clas).text = it.clas.toString()
@@ -37,9 +36,17 @@ class FragmentDetail : Fragment() {
             }
             true
         }
-
         // Inflate the layout for this fragment
         return v //inflater.inflate(R.layout.fragment_detail, container, false)
+    }
+
+    fun update() {
+        this.teamFort.selected?.let {
+            v.findViewById<TextView>(R.id.name).text = it.name
+            v.findViewById<TextView>(R.id.clas).text = it.clas.toString()
+            v.findViewById<TextView>(R.id.description).text = it.description.toString()
+            v.findViewById<TextView>(R.id.health).text = it.health.toString()
+        }
     }
 
     companion object {

@@ -35,6 +35,7 @@ class FragmentEdit : Fragment() {
 
         return v //inflater.inflate(R.layout.fragment_edit, container, false)
     }
+
     private fun saveChanges() {
         // Actualiza el caracter eleigido con el conetenido editado
 
@@ -62,8 +63,10 @@ class FragmentEdit : Fragment() {
         parentFragmentManager.popBackStack()
 
     }
+
     private fun newCaracter() {
 
+        //v.findViewById<Button>(R.id.buttonSave).visibility = View.GONE
         val name = v.findViewById<EditText>(R.id.editTextNombre).text
         val clas = v.findViewById<EditText>(R.id.editTextClas).text
         val description = v.findViewById<EditText>(R.id.editTextDescription).text
@@ -79,8 +82,8 @@ class FragmentEdit : Fragment() {
         )
 
         parentFragmentManager.popBackStack()
-
     }
+
     companion object {
         @JvmStatic
         fun newInstance() =

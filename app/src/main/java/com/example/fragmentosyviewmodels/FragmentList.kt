@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.ListFragment
 import androidx.fragment.app.activityViewModels
@@ -33,13 +35,28 @@ class FragmentList : Fragment() {
         val recyclerView: RecyclerView = v.findViewById(R.id.recyclerview)
         val adaptador = TeamFortRecyclerViewAdapter(this.teamFort.getCaractera)
         adaptador.click = { position, caracter ->
-            this.teamFort.getAndSetselected = caracter
-            val fm: FragmentManager = parentFragmentManager
-            fm.commit {
-                replace(R.id.fragmentContainerView, FragmentDetail.newInstance())
-                addToBackStack("replacement")
+            run{
+                this.teamFort.getAndSetselected = caracter
+                val fm: FragmentManager = parentFragmentManager
+
+                if (!resources.getBoolean(R.bool.land)) {
+                    fm.commit {
+                        replace(R.id.fragmentContainerView, FragmentDetail.newInstance())
+                        addToBackStack("replacement")
+                    }
+                }else{
+
+                    val contenedor = v.findViewById<FragmentContainerView>(R.id.detailfragmentContainerView)
+                    val fragmentManager = childFragmentManager
+                    var fragment = fragmentManager.findFragmentById(contenedor?.id ?: -1)
+                    if(fragment!=null && fragment is FragmentDetail){
+                        (fragment as FragmentDetail).update()
+                    }
+
+                }
             }
         }
+
         v.findViewById<Button>(R.id.addNewClas).setOnClickListener {
             val fm: FragmentManager = parentFragmentManager
 
