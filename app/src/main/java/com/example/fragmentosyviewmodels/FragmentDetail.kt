@@ -1,12 +1,12 @@
 package com.example.fragmentosyviewmodels
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -43,8 +43,8 @@ class FragmentDetail : Fragment() {
     fun update() {
         this.teamFort.selected?.let {
             v.findViewById<TextView>(R.id.name).text = it.name
-            v.findViewById<TextView>(R.id.clas).text = it.clas.toString()
-            v.findViewById<TextView>(R.id.description).text = it.description.toString()
+            v.findViewById<TextView>(R.id.clas).text = it.clas
+            v.findViewById<TextView>(R.id.description).text = it.description
             v.findViewById<TextView>(R.id.health).text = it.health.toString()
         }
     }

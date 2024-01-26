@@ -1,9 +1,9 @@
 package com.example.fragmentosyviewmodels
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.fragmentosyviewmodels.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

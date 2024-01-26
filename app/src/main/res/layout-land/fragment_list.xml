@@ -14,7 +14,8 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="15dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -22,15 +23,17 @@
             android:id="@+id/addNewClas"
             android:layout_width="497dp"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:text="Editar" />
+            android:text="Añadir" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/detailfragmentContainerView"
             android:name="com.example.fragmentosyviewmodels.FragmentDetail"
             android:layout_width="646dp"
             android:layout_height="422dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:padding="15dp" />
 
     </LinearLayout>
 

@@ -17,7 +17,7 @@ class FragmentEdit : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_edit, container, false)
         this.teamFort.selected?.let {
             v.findViewById<EditText>(R.id.editTextNombre).setText(it.name)
