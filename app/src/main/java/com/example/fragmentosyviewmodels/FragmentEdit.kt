@@ -1,23 +1,34 @@
 package com.example.fragmentosyviewmodels
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import com.example.fragmentosyviewmodels.models.Caracter
-
+/**
+ * FragmentEdit es un fragmento responsable para la edición y creación de nuevos personajes.
+ * Proporciona elementos de interfaz de usuario para modificar los detalles del personaje,
+ * como el nombre, la clase, la descripción y la salud.
+ */
 class FragmentEdit : Fragment() {
     private lateinit var v: View
     private val teamFort: TeamFort by activityViewModels()
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Rellenar los elementos de la interfaz de usuario con los
+        // detalles del personaje seleccionado (si están disponibles)
         v = inflater.inflate(R.layout.fragment_edit, container, false)
         this.teamFort.selected?.let {
             v.findViewById<EditText>(R.id.editTextNombre).setText(it.name)
@@ -38,7 +49,6 @@ class FragmentEdit : Fragment() {
 
     private fun saveChanges() {
         // Actualiza el caracter eleigido con el conetenido editado
-
         teamFort.selected?.let { originalCharacter ->
             try {
                 val editedCharacter = originalCharacter.copy(
@@ -54,7 +64,7 @@ class FragmentEdit : Fragment() {
                     teamFort.caracters[index] = editedCharacter
                 }
             } catch (e: NumberFormatException) {
-                // TODO
+                // TODO si introcduce un valor invalido
             }
         }
 
@@ -64,14 +74,17 @@ class FragmentEdit : Fragment() {
 
     }
 
+    @SuppressLint("ResourceType")
     private fun newCaracter() {
 
+        // Guarda los detalles introducidos por el usuario
         //v.findViewById<Button>(R.id.buttonSave).visibility = View.GONE
         val name = v.findViewById<EditText>(R.id.editTextNombre).text
         val clas = v.findViewById<EditText>(R.id.editTextClas).text
         val description = v.findViewById<EditText>(R.id.editTextDescription).text
         val health = v.findViewById<EditText>(R.id.editTextHealth)
 
+        // Crea un nuevo caracter con los detalles guardados
         teamFort.caracters.add(
             Caracter(
                 name.toString(),

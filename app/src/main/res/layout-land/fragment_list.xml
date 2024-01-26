@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".FragmentList">
 
@@ -12,29 +12,40 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
+            android:layout_width="560dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="15dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-            android:id="@+id/addNewClas"
-            android:layout_width="497dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:text="Añadir" />
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/detailfragmentContainerView"
             android:name="com.example.fragmentosyviewmodels.FragmentDetail"
-            android:layout_width="646dp"
-            android:layout_height="422dp"
+            android:layout_width="741dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="15dp" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/addNewClas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="38dp"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:text="Añadir" />
+    </RelativeLayout>
 
 </FrameLayout>
